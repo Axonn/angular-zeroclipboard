@@ -34,6 +34,7 @@ angular.module('zeroclipboard', [])
         return {
           scope: {
             onCopied: '&zeroclipCopied',
+			onCopy: '&zeroclipCopy',
             client: '=?uiZeroclip',
             value: '=zeroclipModel',
             text: '@zeroclipText'
@@ -61,6 +62,12 @@ angular.module('zeroclipboard', [])
             client.on('aftercopy', _completeHnd = function(e) {
               scope.$apply(function() {
                 scope.onCopied({$event: e});
+              });
+            });
+
+            client.on('copy', _completeHnd = function(e) {
+              scope.$apply(function() {
+                scope.onCopy({$event: e});
               });
             });
 
